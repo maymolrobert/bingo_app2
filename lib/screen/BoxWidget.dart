@@ -1,6 +1,7 @@
-import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+
+import '../Strings/strings.dart';
 
 class ButtonWidget extends StatelessWidget {
   final Color textColor;
@@ -21,7 +22,7 @@ class ButtonWidget extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(color: Colors.black),
-          color: primaries[index],
+          color: Strings.primaries[index],
         ),
         child: Center(
           child: CircleAvatar(
@@ -41,39 +42,6 @@ class ButtonWidget extends StatelessWidget {
       ),
     );
   }
-  static const List<MaterialColor> primaries =[
-    Colors.red,
-    Colors.lightGreen,
-    Colors.purple,
-    Colors.deepPurple,
-    Colors.indigo,
-    Colors.blue,
-    Colors.lightBlue,
-    Colors.cyan,
-    Colors.teal,
-    Colors.green,
-    Colors.lightGreen,
-    Colors.lime,
-    Colors.yellow,
-    Colors.amber,
-    Colors.orange,
-    Colors.deepOrange,
-    Colors.brown,
-    // The grey swatch is intentionally omitted because when picking a color
-    // randomly from this list to colorize an application, picking grey suddenly
-    // makes the app look disabled.
-    Colors.blueGrey,
-    Colors.lime,
-    Colors.lightGreen,
-    Colors.lightBlue,
-    Colors.cyan,
-    Colors.teal,
-    Colors.green,
-    Colors.lightGreen,
-    Colors.lime,
-    Colors.yellow,
-    Colors.amber,
 
-  ];
 }
 
