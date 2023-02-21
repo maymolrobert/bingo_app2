@@ -44,10 +44,10 @@ class _BingoTableState extends State<BingoTable> {
   Widget build(BuildContext context) {
     final BingoBloc bingoBloc = BlocProvider.of<BingoBloc>(context);
     return Padding(
-      padding: const EdgeInsets.only(top: 50, bottom: 200, left: 20, right: 20),
+      padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 0),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           const Center(
               child: Text(
@@ -62,34 +62,32 @@ class _BingoTableState extends State<BingoTable> {
           )),
           BlocBuilder<BingoBloc, BingoState>(
             builder: (context, state) {
-              return Flexible(
-                child: Container(
-                  alignment: Alignment.center,
-                  height: MediaQuery.of(context).size.width - 40,
-                  width: MediaQuery.of(context).size.width - 10,
-                  decoration: BoxDecoration(
-                      color: Colors.pink,
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: GridView.builder(
-                        itemCount:25,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 5,childAspectRatio: 1),
-                        itemBuilder: (BuildContext context, int index) {
-                          return ButtonWidget(
-                            buttonTapped: () {
-                              bingoBloc
-                                  .add(BingoAddNumberEvent(index));
-                            },
-                            buttonText: state is BingoAddNumberState
-                                ? state.userIndexList[index].toString()
-                                : "",
-                            textColor: Colors.black,index: index,
-                          );
-                        }),
-                  ),
+              return Container(
+                alignment: Alignment.center,
+                height: MediaQuery.of(context).size.width-30 ,
+                width: MediaQuery.of(context).size.width-30,
+                decoration: BoxDecoration(
+                    color: Colors.pink,
+                    borderRadius: BorderRadius.circular(20)),
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: GridView.builder(
+                      itemCount: 25,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 5,),
+                      itemBuilder: (BuildContext context, int index) {
+                        return ButtonWidget(
+                          buttonTapped: () {
+                            bingoBloc.add(BingoAddNumberEvent(index));
+                          },
+                          buttonText: state is BingoAddNumberState
+                              ? state.userIndexList[index].toString()
+                              : "",
+                          textColor: Colors.black,
+                          index: index,
+                        );
+                      }),
                 ),
               );
             },
@@ -98,6 +96,4 @@ class _BingoTableState extends State<BingoTable> {
       ),
     );
   }
-
-
 }
